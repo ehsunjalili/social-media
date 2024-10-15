@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profie | <%= page.name %>
+  </title>
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/profile.css" />
+</head>
+
+<body>
+  <!-- Header/navbar -->
+  <header>
+    <nav class="w-full flex-between py-5 container">
+      <div>
+        <a href="/" class="logo text-xl"> Social Media</a>
+      </div>
+  
+      <div class="flex gap-6 items-center">
+        <a class="create-button bg-indigo-600" href="/posts">
+          Create
+        </a>
+        <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
+          <button id="profileButton" class="w-full h-full bg-transparent border-none">
+            <a href="/pages/<%= viewUser._id %>">
+              <img src="http://localhost:4005/<%= viewUser.profilePicture %>" class="object-cover"
+                alt="profile cover" />
+            </a>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main id="profile-container" class="container flex">
+    <!-- Content -->
+    <section id="profile-content" class="profile-content">
+      <!-- Profile -->
+      <div id="profile-details-card" class="shadow">
+        <!-- Profile Header image -->
+        <header class="profile-header">
+          <img src="http://localhost:4005/<%= page.cover %>" class="absolute cover z-0" alt="" />
+
+          <!-- Profile Image -->
+          <!-- <span class="profile-pic-card">
+            <img src="http://localhost:4005/<%= page.profilePicture %>" class="profile-pic" alt="" />
+          </span> -->
+          <div id="edit-profile-picture" class="w-18 h-18 rounded-full overflow-hidden profile-pic-card"
+            style="border: 4px solid white;">
+            <img src="http://localhost:4005/<%= page.profilePicture %>" alt="Profile" class="object-cover">
+          </div>
+        </header>
+        <main class="profile-main">
+          <!-- Content -->
+          <div class="flex justify-between">
+            <div>
+              <!-- Profile username -->
+              <h4 id="profile-username" class="text-xl font-Poppins-Bold">
+                <%= page.name %> 
+                <% if(page.blue){ %>
+                  <img src="/images/verify.png" class="w-4" alt="" />
+                <% } %>
+              </h4>
+
+              <!-- Profile id -->
+              <p id="profile-id">@<%= page.username %>
+              </p>
+
+              <!-- Profile Caption -->
+              <p class="mt-4" id="profile-caption">
+                <%= page.biography %>
+              </p>
+
+              <!-- Profile Link -->
+              <div class="flex items-center gap-1 mt-3 text">
+
+
+
+              </div>
+              <!-- Profile Followers/Following count -->
+              <div class="flex items center gap-4 mt-4">
+                <div class="flex items center cursor-pointer gap-1">
+                  <span class="count">
+                    <%= followers.length %>
+                  </span>
+                  <span class="text-gray-700 followers">Followers</span>
+                </div>
+                <div id="followings" class="flex items-center cursor-pointer gap-1">
+                  <span class="count">
+                    <%= followings.length %>
+                  </span>
+                  <span class="text-gray-700 followings">Following</span>
+                </div>
+                <div id="followings" class="flex items-center cursor-pointer gap-1">
+                  <span class="count">
+                    <%= posts.length %>
+                  </span>
+                  <span class="text-gray-700 followings">Posts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manage -->
+
+            <div class="flex items-center gap-2">
+              <%if(!own){%>
+                <% if (followed) { %>
+                  <form method="post" action="/pages/<%= pageID %>/unfollow">
+                    <button class="unfollow-button font-Poppins-Bold" style="color: #4cb0d8;background-color: white;">
+                      Unfollow
+                    </button>
+                  </form>
+                  <% if(viewUser.role == 'ADMIN'){ %>
+                    <form method="post" action="/users/ban-user">
+                      <input type="hidden" name="targetID" value="<%= pageID %>">
+                      <button type="submit" style="background-color: #ef4646; border: none;" class="unfollow-button font-Poppins-Bold">
+                        Ban user
+                      </button>
+                    </form>
+                    <% } %>
+                  <% } else { %>
+                     <% if(isRequested){ %> 
+                      <form method="post" action="/pages/<%= pageID %>/unRequest">
+                        <button class="unfollow-button font-Poppins-Bold" style="color: #4cb0d8;background-color: white;">
+                          Requested
+                        </button>
+                      </form>
+                      <% if(viewUser.role == 'ADMIN'){ %>
+                        <form method="post" action="/users/ban-user">
+                          <input type="hidden" name="targetID" value="<%= pageID %>">
+                          <button type="submit" style="background-color: #ef4646; border: none;" class="unfollow-button font-Poppins-Bold">
+                            Ban user
+                          </button>
+                        </form>
+                        <% } %>
+                      <% }else{ %>  
+                        <form method="post" action="/pages/<%= pageID %>/follow">
+                          <button class="unfollow-button font-Poppins-Bold">
+                            Follow
+                          </button>
+                        </form>
+                        <% if(viewUser.role == 'ADMIN'){ %>
+                          <form method="post" action="/users/ban-user">
+                            <input type="hidden" name="targetID" value="<%= pageID %>">
+                            <button type="submit" style="background-color: #ef4646; border: none;" class="unfollow-button font-Poppins-Bold">
+                              Ban user
+                            </button>
+                          </form>
+                          <% } %>
+                        <% } %>
+                   
+                    <%}%>
+
+
+                      <% }else{ %>
+                        <a href="/users/edit-profile" class="min-w-max flex items-center gap-1 manage-button">
+                          <span> Manage </span>
+                        </a>
+                        <% } %>
+
+            </div>
+          </div>
+
+          <!-- Verification Required Alert -->
+          <% if(!page.isVerified && own) { %>
+            <div class="alert error">
+              <div>
+                <span> This account need to get verificated </span>
+              </div>
+              <div>
+                <form action="/auth/verify" method="post">
+                <button type="submit" class="send-verification">Send verification</button>
+              </form>
+              </div>
+            </div>
+            <% } %>
+
+        </main>
+      </div>
+
+      <!-- Feeds/Posts -->
+      <div id="profile-feeds">
+        <header id="buttons-container" class="flex items-center">
+          <button class="profile-feed__button isActive">Posts
+        </header>
+
+        <!-- Feeds -->
+        <main id="feeds-container">
+          <% if(posts.length> 0) { %>
+            <% posts.forEach(post=> { %>
+              <article class="profile-feed-card">
+                <div>
+                  <header>
+                    <img src="http://localhost:4005/<%= page.profilePicture %>"
+                      style="width: 60px; height: 60px;object-fit: cover;object-position: center; border-radius: 50%;"
+                      alt="profile picture" class="feed-profile-picture" />
+                  </header>
+                </div>
+                <div class="w-full">
+                  <% if(own){ %>
+                    <main class="header-of-post">
+                      <h5 class="feed-username">
+                        <span><strong>
+                            <%= post.user.name %>
+                          </strong></span>
+                      </h5>
+
+                      <form action="/posts/<%= post._id %>/remove" method="post">
+                        <button>
+                          <svg height="20px" width="20px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                            <style type="text/css">
+                              .st0 {
+                                fill: #ef4646;
+                              }
+                            </style>
+                            <g>
+                              <path class="st0" d="M439.114,69.747c0,0,2.977,2.1-43.339-11.966c-41.52-12.604-80.795-15.309-80.795-15.309l-2.722-19.297
+		C310.387,9.857,299.484,0,286.642,0h-30.651h-30.651c-12.825,0-23.729,9.857-25.616,23.175l-2.722,19.297
+		c0,0-39.258,2.705-80.778,15.309C69.891,71.848,72.868,69.747,72.868,69.747c-10.324,2.849-17.536,12.655-17.536,23.864v16.695
+		h200.66h200.677V93.611C456.669,82.402,449.456,72.596,439.114,69.747z" />
+                              <path class="st0" d="M88.593,464.731C90.957,491.486,113.367,512,140.234,512h231.524c26.857,0,49.276-20.514,51.64-47.269
+		l25.642-327.21H62.952L88.593,464.731z M342.016,209.904c0.51-8.402,7.731-14.807,16.134-14.296
+		c8.402,0.51,14.798,7.731,14.296,16.134l-14.492,239.493c-0.51,8.402-7.731,14.798-16.133,14.288
+		c-8.403-0.51-14.806-7.722-14.296-16.125L342.016,209.904z M240.751,210.823c0-8.42,6.821-15.241,15.24-15.241
+		c8.42,0,15.24,6.821,15.24,15.241v239.492c0,8.42-6.821,15.24-15.24,15.24c-8.42,0-15.24-6.821-15.24-15.24V210.823z
+		 M153.833,195.608c8.403-0.51,15.624,5.894,16.134,14.296l14.509,239.492c0.51,8.403-5.894,15.615-14.296,16.125
+		c-8.403,0.51-15.624-5.886-16.134-14.288l-14.509-239.493C139.026,203.339,145.43,196.118,153.833,195.608z" />
+                            </g>
+                          </svg>
+                        </button>
+                      </form>
+                    </main>
+                    <% }else{ %>
+                      <main>
+                        <h5 class="feed-username">
+                          <span><strong>
+                              <%= post.user.name %>
+                            </strong></span>
+                        </h5>
+                      </main>
+                      <% } %>
+
+                        <footer>
+                          <div id="<%= post._id %>">
+
+                            <% let ext = post.media.path.split('.').pop()
+                            if(ext != 'mp4'){
+                            %>
+                            <img clas src="http://localhost:4005/<%= post.media.path %>" class="tweet-image object-cover" alt="" />
+                            <% }else{ %>
+                              <video  style="width: 100%;border-radius: 12px;" controls>
+                                <source id="instagramVideo" src="http://localhost:4005/<%= post.media.path %>" type="video/mp4">
+                              </video>
+                              <% } %>
+
+
+                          </div>
+                          <div class="feed-card-content">
+                            <div class="feed-buttons">
+                              <% if(post.hasLike){ %>
+                                <form action="/posts/dislike" method="post">
+                                  <input type="hidden" name="postID" value="<%= post._id %>">
+                                  <button class="max-w-max" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FF4740" viewBox="0 0 24 24"
+                                      stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>
+                                  </button>
+                                </form>
+                                <% }else{ %>
+                                  <form action="/posts/like" method="post">
+                                    <input type="hidden" name="postID" value="<%= post._id %>">
+                                    <button class="max-w-max" type="submit">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                      </svg>
+                                    </button>
+                                  </form>
+                                  <% } %>
+
+                                  
+                                      <input type="hidden" name="postID" value="<%= post._id %>">
+                                      <button type="submit" class="max-w-max">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+                                        </svg>
+                                      </button>
+                                  
+
+
+
+                                    <!-- <button class="max-w-max">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                      </svg>
+                                    </button> -->
+                                    <% if(post.hasSave){ %>
+                                      <form action="/posts/unsave" method="post">
+                                        <input type="hidden" name="postID" value="<%= post._id %>">
+                                        <button class="max-w-max">
+                                          <svg fill="#000" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                              d="M5 7.8C5 6.11984 5 5.27976 5.32698 4.63803C5.6146 4.07354 6.07354 3.6146 6.63803 3.32698C7.27976 3 8.11984 3 9.8 3H14.2C15.8802 3 16.7202 3 17.362 3.32698C17.9265 3.6146 18.3854 4.07354 18.673 4.63803C19 5.27976 19 6.11984 19 7.8V21L12 17L5 21V7.8Z"
+                                              stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round" />
+                                          </svg>
+                                        </button>
+                                      </form>
+                                      <% }else{ %>
+                                        <form action="/posts/save" method="post">
+                                          <input type="hidden" name="postID" value="<%= post._id %>">
+                                          <button class="max-w-max">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                              stroke="currentColor" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
+                                              <path
+                                                d="M5 7.8C5 6.11984 5 5.27976 5.32698 4.63803C5.6146 4.07354 6.07354 3.6146 6.63803 3.32698C7.27976 3 8.11984 3 9.8 3H14.2C15.8802 3 16.7202 3 17.362 3.32698C17.9265 3.6146 18.3854 4.07354 18.673 4.63803C19 5.27976 19 6.11984 19 7.8V21L12 17L5 21V7.8Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            </svg>
+                                          </button>
+                                        </form>
+                                        <% } %>
+
+                            </div>
+                            <div class="text-sm">
+                              <% if(post.firstLike){ %>
+                                <span> Liked by </span>
+                                <span>
+          
+          
+                                  <strong> 
+                                    
+                                  <a href="/pages/<%= post.firstLike._id %>">
+                                     <%= post.firstLike.username %>
+                                  </a>
+                                   
+                                  </strong>
+          
+          
+                                </span>
+                                <% } %>
+                                  <% if(post.likes.length> 1){ %>
+                                    <span> and </span>
+                                    <span>
+                                      <strong>
+                                        <%= post.likes.length - 1 %> others
+                                      </strong>
+                                    </span>
+                                    <% } %>
+                            </div>
+                            <div>
+                              <p class="text-gray-700">
+                                <%= post.description %>
+                              </p>
+                            </div>
+                            <% post.hashtags.forEach(tag=>{ %>
+                              <% if(tag !='' ){ %>
+                                <form action="/explore" method="post">
+                                  <input type="hidden" name="search" value="#<%= tag %>">
+                                  <button type="submit">
+                                    <p style="color: #3f729b;text-align: left;font-size: 16px;">#<%= tag %></p>
+                                  </button>
+                                </form>
+                                <% } %>
+                                  <% }) %>
+            
+                          </div>
+                        </footer>
+                </div>
+              </article>
+              <% }) %>
+                <% } else { %>
+                  <div class="its-empty">
+                    <% if(hasAccess){ %> 
+                       <div class="font-Poppins-Bold text-lg text-gray-900">
+                      Aww, Nothing to show :(
+                    </div>
+                      <% }else{ %>  
+                        <div style="margin-top: -30px;" class="font-Poppins-Bold text-lg text-gray-900">
+                          Follow this account to see their photos and videos
+                        </div>
+                        <%}%>
+                   
+                    <div>
+                      <% if(!hasAccess){ %> 
+                        <img src="/images/private.png" class="not-found-image" alt="" />
+                        <% }else{ %> 
+                           <img src="/images/notfound.png" class="not-found-image" alt="" />
+                          <% } %>
+                     
+                    </div>
+                  </div>
+                  <% } %>
+
+
+
+
+        </main>
+
+        <!-- Footer -->
+        <footer></footer>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="profile-sidebar">
+      <% if(peopleToFollow.length){ %>  
+          <section class="profile-side-card shadow">
+        <header class="flex justify-between">
+          <h5 claas="side-title" style="font-size: 16px">People to follow</h5>
+          <div>
+          
+          </div>
+        </header>
+        <main class="mt-6">
+          <% peopleToFollow.forEach(people=>{ %>
+           
+            <a href="/pages/<%= people._id %>">
+              <article class="people-follow">
+            <div class="flex items-center gap-2">
+              <div>
+                <img src="http://localhost:4005/<%= people.profilePicture %>" style="width: 60px; 
+                height: 60px; 
+                object-fit: cover; 
+                border-radius: 50%; " class="w-15 rounded-full" alt="" />
+              </div>
+              <div class="">
+                <div class="flex items-center gap-1">
+                  <p class="text-sm font-Poppins-SemiBold"><%= people.name %></p>
+                  <% if(people.blue){ %>
+                  <img src="/images/verify.png" class="w-4" alt="" />
+                  <% } %>
+                </div>
+                <button class="text-xs text-gray-600 max-w-max">
+                  <%= people.username %>
+                </button>
+              </div>
+            </div>
+            <div>
+              <form action="/pages/<%= people._id %>/follow" method="post">
+              <button type="submit" class="follow-button">Follow</button>
+            </form>
+            </div>
+          </article>
+    
+          </a>
+            <% }) %>
+        
+        </main>
+      </section>
+        
+        <% } %>
+    
+
+      <section class="profile-side-card shadow">
+        <header class="flex justify-between">
+          <h5 claas="side-title" style="font-size: 16px">Trending now</h5>
+          <div>
+          
+          </div>
+        </header>
+        <main class="font-Poppins-SemiBold mt-3">
+          <% mostCommonTags.forEach(tag =>{ %>  
+          <article class="p-3" style="padding: 8px;">
+            <a href="#" class="flex items-center gap-2 text-gray-900">
+              <span class="text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                </svg>
+              </span>
+              <form action="/explore" method="post">
+              <input type="hidden" value="#<%= tag %>" name="search">
+              <button type="submit">
+              <span style="color: #3f729b;font-size: 16px;font-weight: 600;"> #<%= tag %></span>
+              </button>
+            </form>
+            </a>
+          </article>
+          <% }) %>
+        </main>
+      </section>
+
+      <% if(newestTopNineImages.length > 8){ %> 
+      <section class="profile-side-card shadow">
+        <header class="flex justify-between">
+          <h5 claas="side-title" style="font-size: 16px">What's happening</h5>
+          <div>
+           
+          </div>
+        </header>
+        <main id="whats-happening" class="mt-4">
+          <% newestTopNineImages.forEach(post =>{ %>
+            <% let ext = post.media.path.split('.').pop()
+            if(ext != 'mp4'){ %>
+          <article class="wh-card">
+            <a href="/explore/<%= post._id %>">
+            <img src="http://localhost:4005/<%= post.media.path %>" alt="" />
+          </a>
+          </article>
+           <% } %>
+          <% }) %>
+         
+        </main>
+      </section>
+      <% } %>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="flex items-center gap-2"></footer>
+
+  <!-- Followers Modal -->
+  <section id="modal" class="modal-screen followers-modal-screen">
+    <section id="modal-card">
+      <header id="modal-header" class="w-full pb-4 flex items-center justify-between">
+        <div></div>
+        <div class="pl-5">Followers (<%= followers.length %>)</div>
+        <button class="max-w-max flex-center followers-close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+      <main class="mt-2">
+
+        <% if(hasAccess) { %>
+          <% if(followers.length> 0 ) { %>
+
+            <% followers.forEach( (follower)=> { %>
+
+              <article class="following-card">
+                <div class="flex items-center gap-1">
+                  <a href="/pages/<%= follower._id %>">
+                    <div class="flex items-center gap-2">
+                      <div class="w-12 h-12 rounded-full overflow-hidden">
+                        <img src="http://localhost:4005/<%= follower.profilePicture %>"
+                          class="w-full object-cover h-full" />
+                      </div>
+                      <div>
+                        <h6>
+                          <%= follower.name %>
+                          <% if(follower.blue){ %> 
+                            <img style="margin-bottom: -3px;" src="/images/verify.png" class="w-4" alt="" />
+                          <% } %>
+                        </h6>
+                        <p class="text-sm font-Poppins-Light text-gray-600">
+                          @<%= follower.username %>
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+               
+              </article>
+
+              <% }) %>
+                <% } else { %>
+                  <h1 style="text-align: center">No followers !!</h1>
+
+                  <% } %>
+                    <% } else { %>
+                      <h1 style="text-align: center">You can't access to followers</h1>
+                      <% } %>
+
+
+      </main>
+    </section>
+  </section>
+
+  <!-- Followings Modal -->
+  <section id="modal" class="modal-screen followings-modal-screen">
+    <section id="modal-card">
+      <header id="modal-header" class="w-full pb-4 flex items-center justify-between">
+        <div></div>
+        <div class="pl-5">Followings (<%= followings.length %>)</div>
+        <button class="max-w-max flex-center followings-close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+      <main class="mt-2">
+
+        <% if(hasAccess) { %>
+          <% if(followings.length> 0) { %>
+
+            <% followings.forEach( (following)=> { %>
+
+              <article class="following-card">
+                <div class="flex items-center gap-1">
+                  <a href="/pages/<%= following._id %>">
+                    <div class="flex items-center gap-2">
+                      <div class="w-12 h-12 rounded-full overflow-hidden">
+                        <img src="http://localhost:4005/<%= following.profilePicture %>"
+                          class="w-full object-cover h-full">
+                      </div>
+                      <div>
+                        <h6>
+                          <%= following.name %>
+                          <% if(following.blue){ %> 
+                            <img style="margin-bottom: -3px;" src="/images/verify.png" class="w-4" alt="" />
+                          <% } %>
+                        </h6>
+                        <p class="text-sm font-Poppins-Light text-gray-600">
+                          @<%= following.username %>
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div>
+                 
+                </div>
+              </article>
+
+              <% }) %>
+                <% } else { %>
+                  <h1 style="text-align: center">No followings !!</h1>
+
+                  <% } %>
+                    <% } else { %>
+                      <h1 style="text-align: center">You can't access to followings</h1>
+                      <% } %>
+
+
+
+      </main>
+    </section>
+  </section>
+
+
+
+  <!-- Modal -->
+  <section id="comments-modal" class="modal-screen comments-modal">
+    <section id="modal-card">
+      <div class="overflow-y-visible" id="comments_modal">
+        <header class="w-full border-b pb-4 flex-center text-center">
+          <p>
+            Comments
+          </p>
+        </header>
+      
+        </footer>
+    </section>
+  </section>
+
+      <!-- Scripts -->
+      <script src="/js/page.js"></script>
+      
+      <script src="/js/sweetalert.js"></script>
+      <script>
+        if ("<%= locals.messages.error %>") {
+          swal({
+            title: "Sorry !",
+            icon: "error",
+            text: "<%= locals.messages.error %>",
+            buttons: "OK",
+          });
+        } else if ("<%= locals.messages.success %>") {
+          swal({
+            title: "Good job !",
+            icon: "success",
+            text: "<%= locals.messages.success %>",
+            buttons: "OK",
+          });
+        }
+
+        const followersSpan = document.querySelector(".followers");
+        const followingsSpan = document.querySelector(".followings");
+
+        followersSpan.addEventListener("click", () => {
+          const followersModal = document.querySelector(
+            ".followers-modal-screen"
+          );
+          const followerModalCloseBtn = document.querySelector(
+            ".followers-close-button"
+          );
+
+          followersModal.classList.add("visible");
+
+          followerModalCloseBtn.addEventListener("click", () => {
+            followersModal.classList.remove("visible");
+          });
+        });
+
+        followingsSpan.addEventListener("click", () => {
+          const followingsModal = document.querySelector(
+            ".followings-modal-screen"
+          );
+          const followingsModalCloseBtn = document.querySelector(
+            ".followings-close-button"
+          );
+
+          followingsModal.classList.add("visible");
+
+          followingsModalCloseBtn.addEventListener("click", () => {
+            followingsModal.classList.remove("visible");
+          });
+        });
+
+
+       // عملکرد Intersection Observer را تعریف می‌کنیم
+       const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, {
+        threshold: 0.5  // این مقدار تعیین می‌کند که ۵۰٪ از ویدئو باید دیده شود تا پخش شود
+    });
+    
+    // هر ویدئو را برای مشاهده درون viewport نظارت می‌کنیم
+    document.querySelectorAll('video').forEach(video => {
+        observer.observe(video);
+        video.loop = true; 
+    });
+
+      </script>
+</body>
+
+</html>

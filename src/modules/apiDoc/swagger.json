@@ -1,0 +1,417 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Social media",
+        "description": "One simple social media project that developed by Ehsan to getting to know about developing Node js apps.",
+        "version": "1.0.0"
+    },
+    "components":{
+      "securitySchemes":{
+        "Authorization":{
+        "type":"apiKey",
+        "name":"Authorization",
+        "sheme":"bearer",
+        "in":"header",
+        "description":"User token authorization"
+        }
+      }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "All routes about user auth"
+        },
+        {
+            "name": "Post",
+            "description": "All routes to manipulate posts"
+        },
+        {
+            "name": "Comment"
+        },
+        {
+            "name": "Page"
+        },
+        {
+            "name": "User"
+        }
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Ehsan",
+                                    "email": "ehsunjalili@gmail.com",
+                                    "username": "ehsanjalili",
+                                    "password": "EhsanEhsan"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successfully register"
+                    },
+                    "400": {
+                        "description": "invalid request body"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Rendering register page view"
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sign in user with username/email and password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "identifier": "ehsanjalili",
+                                    "password": "EhsanEhsan"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successfully login"
+                    },
+                    "400": {
+                        "description": "invalid request body"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Rendering login page view"
+            }
+        },
+        "/posts/": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Rendering post uploader page view"
+            },
+            "post":{
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Create new post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "description": "Hi friends this is a post caption text",
+                                    "hashtags":"Coding,programming,swagger,life_style"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The post created successfully"
+                    },
+                    "403": {
+                        "description": "First, your account must be authenticated"
+                    }
+                }
+            }
+        },
+        "/posts/like": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Like a post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "postID": "66a529cd73708cda1cc39861"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The post liked successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to like this post due to some reasons such user private page"
+                    }
+                }
+            }
+        },
+        "/posts/dislike": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Dislike a post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "postID": "66a529cd73708cda1cc39861"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The post disliked successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to dislike this post due to some reasons such user private page"
+                    }
+                }
+            }
+        },
+        "/posts/save": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "save a post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "postID": "66a529cd73708cda1cc39861"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The post saved successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to save this post due to some reasons such user private page"
+                    }
+                }
+            }
+        },
+        "/posts/unsave": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "unsave a post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "postID": "66a529cd73708cda1cc39861"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The post unsaved successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to unsave this post due to some reasons such user private page"
+                    }
+                }
+            }
+        },
+        "/posts/saves": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Rendering saves list page view"
+            }
+        },
+        "/posts/{postID}/remove": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Remove a published post by account owner",
+                "parameters": [
+                    {
+                        "name": "postID",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "The post deleted successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to delete this post due to you are not page owner"
+                    }
+                }
+            }
+        },
+        "/posts/new-comment": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Submit new comment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "postID": "66a529cd73708cda1cc39861",
+                                    "content": "Hi This is a comment text about related post"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Your comment submited successfully"
+                    },
+                    "403": {
+                        "description": "You don't access to submit a comment for this post due to some reasons such user private page"
+                    }
+                }
+            }
+        },
+        "/pages/{pageID}/": {
+            "get": {
+                "tags": [
+                    "Page"
+                ],
+                "summary": "Rendering a user page",
+                "parameters": [
+                    {
+                        "name": "pageID",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/pages/{pageID}/follow": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "summary": "Follow a user",
+                "parameters": [
+                    {
+                        "name": "pageID",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "You followd user successfully"
+                    }
+                }
+            }
+        },
+        "/pages/{pageID}/unfollow": {
+            "post": {
+                "tags": [
+                    "Page"
+                ],
+                "summary": "unFollow a user",
+                "parameters": [
+                    {
+                        "name": "pageID",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "You unfollowd user successfully"
+                    }
+                }
+            }
+        },
+        "/users/edit-profil": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Rendering profile edit page"
+            }
+        },
+        "/users/profile-picture": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user info",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Ehsan jalili",
+                                    "username": "ehsanjalili",
+                                    "email":"ehsunjalili@gmail.com",
+                                    "password":"EhsanEhsan"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Your profile has been updated successfully"
+                    },
+                    "403": {
+                        "description": "One of the entered information is not valid"
+                    }
+                }
+            }
+        }
+    }
+}

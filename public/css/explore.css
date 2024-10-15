@@ -1,0 +1,26 @@
+#feeds {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Creates 4 equal columns */
+    gap: 0px;
+    /* Adjust the gap between articles as needed */
+    padding: 0px;
+    /* Optional: Adds padding around the grid */
+    border-radius: 0% !important;
+}
+
+.feedCard {
+    margin: 0px;
+    padding: 1px;
+
+    background-color: #fff;
+    /* Optional: Adjust the background of each feed card */
+
+    overflow: hidden;
+    /* Optional: Ensures content doesn't overflow */
+
+}
+
+.tweetImage {
+ border-radius: 0px !important;
+}
