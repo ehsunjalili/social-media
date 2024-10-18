@@ -1,3 +1,4 @@
+![](https://github.com/ehsunjalili/social-media/blob/main/public/images/banner.jpg)
 
 #  Social Media Project (Instagram Clone)
 ![Last update](https://img.shields.io/github/last-commit/ehsunjalili/social-media?label=Last%20update&color=blue)   &nbsp;  ![](https://img.shields.io/badge/npm%20package-10.2.3-red)   &nbsp; [![Node.js](https://img.shields.io/badge/license-MIT-238636)](https://github.com/ehsunjalili/social-media)
