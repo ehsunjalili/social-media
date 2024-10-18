@@ -9,10 +9,13 @@ A full-featured social network project similar to Instagram, built using **Expre
 ## 🚀 Features
 - User Authentication (Sign up, Login, Logout)
 - Profile Management (Edit profile, Change avatar)
-- Create, Edit, and Delete Posts
+- Create and Delete Posts
 - Upload and display images
-- Like and comment on posts
+- Like and dislike on posts
 - Follow and unfollow users
+- Explore page to discover new posts and users
+- Notifications for likes and follows
+- 
 
 
 
@@ -21,7 +24,7 @@ A full-featured social network project similar to Instagram, built using **Expre
 ## 🛠️ Tech Stack
 - **Back-end**: [Express.js](https://expressjs.com/) (Node.js framework)
 -  **Front-end**: [Ejs](https://ejs.co/) (Embedded JavaScript templating)
-- **Database**: MongoDB with [Mongoose](https://mongoosejs.com/)
+- **Database**: MongoDB with [Mongoose](https://mongoosejs.com/) and Redis
 - **Authentication**: JWT (JSON Web Token)
 - **File Uploads**: [Multer](https://www.npmjs.com/package/multer)
 - **Other Tools**: bcrypt, dotenv, etc.
