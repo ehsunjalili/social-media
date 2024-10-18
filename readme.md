@@ -14,6 +14,10 @@ A full-featured social network project similar to Instagram, built using **Expre
 - Like and comment on posts
 - Follow and unfollow users
 
+ > ⚠️ **Note:**  
+> This application is designed and developed **only for desktop**. It is **not responsive** and may not provide an optimal user experience on mobile devices or smaller screens.
+
+
 
 ## 🛠️ Tech Stack
 - **Back-end**: [Express.js](https://expressjs.com/) (Node.js framework)
