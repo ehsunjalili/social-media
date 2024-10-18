@@ -23,8 +23,8 @@ A full-featured social network project similar to Instagram, built using **Expre
 - **File Uploads**: [Multer](https://www.npmjs.com/package/multer)
 - **Other Tools**: bcrypt, dotenv, etc.
 
-[![](https://img.shields.io/badge/node-008000)](https://nodejs.org/en) [![](https://img.shields.io/badge/express-black)](https://expressjs.com/)  [![](https://img.shields.io/badge/mongo-00684a)](https://www.mongodb.com/) [![](https://img.shields.io/badge/redis-red)](https://redis.io/) [![](https://img.shields.io/badge/jsonwebtoken-white)](https://jwt.io/)  [![](https://img.shields.io/badge/mongoose-800)](https://mongoosejs.com/)  [![](https://img.shields.io/badge/uuid-8956ff)](https://www.npmjs.com/package/uuid)   [![](https://img.shields.io/badge/bcrypt-gray)](https://www.npmjs.com/package/uuid)  
-
+[![](https://img.shields.io/badge/node-008000)](https://nodejs.org/en) [![](https://img.shields.io/badge/express-black)](https://expressjs.com/)  [![](https://img.shields.io/badge/mongo-00684a)](https://www.mongodb.com/) [![](https://img.shields.io/badge/redis-red)](https://redis.io/) [![](https://img.shields.io/badge/jsonwebtoken-white)](https://jwt.io/)  [![](https://img.shields.io/badge/mongoose-800)](https://mongoosejs.com/)  [![](https://img.shields.io/badge/uuid-8956ff)](https://www.npmjs.com/package/uuid)   [![](https://img.shields.io/badge/bcrypt-gray)](https://www.npmjs.com/package/uuid)  [![](https://img.shields.io/badge/multer-blue)](https://www.npmjs.com/package/multer)     [![](https://img.shields.io/badge/yup-66d9ef)](https://www.npmjs.com/package/yup)   [![](https://img.shields.io/badge/ejs-90a93a)](https://ejs.co/)     [![](https://img.shields.io/badge/javascript-yellow)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 
+ 
 
 
 
