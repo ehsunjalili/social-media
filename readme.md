@@ -15,7 +15,16 @@ A full-featured social network project similar to Instagram, built using **Expre
 - Follow and unfollow users
 - Explore page to discover new posts and users
 - Notifications for likes and follows
-- 
+- **Search for users** by their username
+- **Search for specific hashtags**
+- Display **top users**
+- Show **popular posts**
+- Suggest following **newcomers**
+- Display **trending hashtags**
+- View **followers & following** of public accounts
+- Admin can **delete any account** if necessary
+- Ability to **save posts**
+- **OTP-based authentication system** for enhanced security
 
 
 
