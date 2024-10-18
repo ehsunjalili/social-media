@@ -14,8 +14,7 @@ A full-featured social network project similar to Instagram, built using **Expre
 - Like and comment on posts
 - Follow and unfollow users
 
- > ⚠️ **Note:**  
-> This application is designed and developed **only for desktop**. It is **not responsive** and may not provide an optimal user experience on mobile devices or smaller screens.
+
 
 
 
@@ -69,5 +68,7 @@ To set up and run this project on your local machine:
 
    By default, the app will be accessible at `http://localhost:4005`
 
----
+
+ > ⚠️ **Note:**  
+> This application is designed and developed **only for desktop**. It is **not responsive** and may not provide an optimal user experience on mobile devices or smaller screens.
 
