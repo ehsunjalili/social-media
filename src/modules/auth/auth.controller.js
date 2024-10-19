@@ -36,13 +36,16 @@ module.exports.register = async (req, res, next) => {
             return res.redirect('/auth/register');
         }
 
-        const isFirstUser = (await UserModel.countDocuments()) == 0
-        let role = 'USER'
+        const isFirstUser = (await UserModel.countDocuments()) == 0;
+        
+        let role = 'USER';
+        let blue = false;
         if (isFirstUser) {
             role = 'ADMIN'
+            blue = true
         }
 
-        let user = new UserModel({ name, email, username, password })
+        let user = new UserModel({ name, email, role, blue, username, password })
         user = await user.save()
 
         const accessToken = jwt.sign({ userID: user._id }, process.env.JWT_SECRET, { expiresIn: '20day' });
