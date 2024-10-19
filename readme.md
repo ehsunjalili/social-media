@@ -6,6 +6,22 @@
 
 A full-featured social network project similar to Instagram, built using **Express.js**. This project includes features like user authentication, image uploads, posts, comments, and more, giving you a hands-on experience of creating a scalable social media platform.
 
+
+## 📸 Screenshots
+
+Here are some screenshots showcasing the main features of the application:
+
+| Home Page | Profile Page | Explore Page |
+|:---------:|:------------:|:------------:|
+| ![Home Page](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/home.png) | ![Profile Page](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/profile.png) | ![Explore Page](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/explore.png) |
+
+| Post Details | Verify Page | Login Page |
+|:------------:|:-------------:|:----------------:|
+| ![Post Details](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/post.png) | ![Verify Page](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/verify.png) | ![Login Page](https://github.com/ehsunjalili/social-media/blob/main/public/images/screenshots/login.png) |
+
+
+
+
 ## 🚀 Features
 - User Authentication (Sign up, Login, Logout)
 - Profile Management (Edit profile, Change avatar)
