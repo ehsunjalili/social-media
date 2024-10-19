@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UserModel = require('../../models/User');
 const refreshTokenModel = require('../../models/refreshToken');
-const ResetPasswordModel = require('../../models/ResetPassword')
 const banModel = require('../../models/Ban')
 
 const nodeMailer = require('nodemailer')
