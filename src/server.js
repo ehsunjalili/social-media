@@ -13,7 +13,7 @@ if (!productionMode) {
 //* Database connection
 const connectToDB = async () => {
     try {
-        await mongoose.connect('mongodb://root:5RZ7Aa7gj9cvxLh5hRbgFMF7@social-media:27017/social-media?authSource=admin',{
+        await mongoose.connect(process.env.MONGO_URI,{
             useNewUrlParser:true,
             authSource:'admin',
         });
