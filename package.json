@@ -1,5 +1,5 @@
 {
-  "name": "my-custom-social-media",
+  "name": "social-media",
   "version": "1.0.0",
   "description": "",
   "main": "./src/server.js",
