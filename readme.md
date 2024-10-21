@@ -6,6 +6,10 @@
 
 A social network project similar to Instagram, built using **Express.js**. This project includes features like user authentication, image uploads, posts, comments, and more, giving you a hands-on experience of creating a scalable social media platform.
 
+## 🌐 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](http://your-live-demo-url.com)
+
 
 ## 📸 Screenshots
 
