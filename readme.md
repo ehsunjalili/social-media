@@ -46,7 +46,7 @@ Here are some screenshots showcasing the main features of the application:
 - Admin can **delete any account** if necessary
 - Ability to **save posts**
 - **OTP-based authentication system** for enhanced security
-
+- **Account recovery**: Option to recover account if password is forgotten (via username or email)
 
 
 
