@@ -129,7 +129,7 @@ module.exports.getPage = async (req, res, next) => {
     })
 
     const viewUser = await userModel.findOne({ _id: user._id }).lean();
-    viewUser.profilePicture = media.profilePicture;
+    viewUser.profilePicture = (await getMediaFromRedis(user._id)).profilePicture
 
 
 
