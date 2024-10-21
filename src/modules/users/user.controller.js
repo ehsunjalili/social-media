@@ -61,19 +61,40 @@ module.exports.updateProfile = async (req, res, next) => {
       }
     }
 
-
-
-
     const privateMode = private ? true : false
 
     const userID = req.user._id
-
     const currentUser = await userModel.findOne({ _id: userID })
 
-    const profilePath = req.files.profile ? `/${req.files.profile[0].filename}` : `${currentUser.profilePicture}`;
+   
+    const media = await getMediaFromRedis(userID);
 
-    const coverPath = req.files.cover ? `/${req.files.cover[0].filename}` : `${currentUser.cover}`;
+    
+    if (req.files.profile != undefined && req.files.cover != undefined) {
 
+      const userPictures = {
+        cover: `/${req.files.cover[0].filename}`,
+        profilePicture: `/${req.files.profile[0].filename}`,
+      }
+       await redisClient.set(`profiles:${currentUser._id}`, JSON.stringify(userPictures));
+
+    } else if (req.files.profile != undefined && req.files.cover == undefined) {
+
+      const userPictures = {
+        cover: media.cover,
+        profilePicture: `/${req.files.profile[0].filename}`,
+      }
+       await redisClient.set(`profiles:${currentUser._id}`, JSON.stringify(userPictures));
+
+    } else if (req.files.profile == undefined && req.files.cover != undefined) {
+
+      const userPictures = {
+        cover: `/${req.files.cover[0].filename}`,
+        profilePicture: media.profilePicture,
+      }
+       await redisClient.set(`profiles:${currentUser._id}`, JSON.stringify(userPictures));
+
+    }
 
   
 
@@ -94,13 +115,6 @@ module.exports.updateProfile = async (req, res, next) => {
     if (!user) {
       req.flash('error', 'User not found !!')
     }
-
-    const userPictures = {
-      cover : coverPath,
-      profilePicture : profilePath,
-    }
-
-    await redisClient.set(`profiles:${user._id}`, JSON.stringify(userPictures));
 
 
     req.flash('success', 'Your profile updated successfully');
