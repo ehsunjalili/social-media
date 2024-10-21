@@ -39,7 +39,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= userInfo._id %>">
-              <img src="/<%= userInfo.profilePicture %>" class="object-cover"
+              <img src="<%= userInfo.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -56,7 +56,7 @@
        <a href="/pages/<%= userInfo._id %>">
       <article class="profile-card shadow px-4">
         <div>
-          <img src="/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
+          <img src="<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
         </div>
         <div>
           <p class="user-profile-name text-gray-900 font-Poppins-Bold text-sm">
@@ -230,7 +230,7 @@
                     <a style="width: 40%;" href="/pages/<%= result._id %>">
                       <article class="popular-post">
                         <div class="">
-                          <img src="/<%= result.profilePicture %>" class="popular-post_icon" style="border-radius: 100px;" alt="">
+                          <img src="<%= result.profilePicture %>" class="popular-post_icon" style="border-radius: 100px;" alt="">
                         </div>
                         <div>
                           <p class="text-xs mb-1 text-gray-900 line-clamp-2">

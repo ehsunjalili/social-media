@@ -25,7 +25,7 @@
                 <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
                     <button id="profileButton" class="w-full h-full bg-transparent border-none">
                         <a href="/pages/<%= userInfo._id %>">
-                            <img src="/<%= userInfo.profilePicture %>" class="object-cover"
+                            <img src="<%= userInfo.profilePicture %>" class="object-cover"
                                 alt="profile cover" />
                         </a>
                     </button>
@@ -41,7 +41,7 @@
             <a href="/pages/<%= userInfo._id %>">
             <article class="profile-card shadow px-4">
                 <div>
-                    <img src="/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full"
+                    <img src="<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full"
                         alt="Peyman Ahmadi" />
                 </div>
                 <div>
@@ -207,7 +207,7 @@
                             <div id="<%= item.post._id %>"></div>
                             <a href="/pages/<%= item.post.user._id %>" class="flex items-center gap-3">
                                 <div>
-                                    <img src="/<%= item.profilePicture %>"
+                                    <img src="<%= item.profilePicture %>"
                                         alt="Profile card" class="w-8 rounded-full" style="width: 32px;
                                         height: 32px;
                                         object-fit: cover;

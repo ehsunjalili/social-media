@@ -25,7 +25,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= userInfo._id %>">
-              <img src="/<%= userInfo.profilePicture %>" class="object-cover"
+              <img src="<%= userInfo.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -42,7 +42,7 @@
       <a href="/pages/<%= userInfo._id %>">
       <article class="profile-card shadow px-4">
         <div>
-          <img src="/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
+          <img src="<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
         </div>
         <div>
           <p class="user-profile-name text-gray-900 font-Poppins-Bold text-sm">
@@ -214,7 +214,7 @@
                 <div id="<%= post._id %>"></div>
                 <a href="/pages/<%=post.user._id%>" class="flex items-center gap-3">
                   <div>
-                    <img src="/<%= post.profilePicture %>" alt="Profile card"
+                    <img src="<%= post.profilePicture %>" alt="Profile card"
                       class="w-8 rounded-full" style="width: 32px;
                       height: 32px;
                       object-fit: cover;
@@ -679,7 +679,7 @@
             <a href="/pages/<%= user._id %>">
               <article class="popular-post">
                 <div class="">
-                  <img src="/<%= user.profilePicture %>" class="popular-post_icon"
+                  <img src="<%= user.profilePicture %>" class="popular-post_icon"
                     style="border-radius: 100px;" alt="" />
                 </div>
                 <div>

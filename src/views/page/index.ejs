@@ -26,7 +26,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= viewUser._id %>">
-              <img src="/<%= viewUser.profilePicture %>" class="object-cover"
+              <img src="<%= viewUser.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -195,7 +195,7 @@
               <article class="profile-feed-card">
                 <div>
                   <header>
-                    <img src="/<%= page.profilePicture %>"
+                    <img src="<%= page.profilePicture %>"
                       style="width: 60px; height: 60px;object-fit: cover;object-position: center; border-radius: 50%;"
                       alt="profile picture" class="feed-profile-picture" />
                   </header>
