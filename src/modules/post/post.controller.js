@@ -240,7 +240,7 @@ module.exports.removePost = async (req, res, next) => {
             return res.redirect('back');
         }
 
-        const mediaPath = path.join(__dirname, '..', '..', '..', 'public', 'images', 'posts', post.media.filename)
+        const mediaPath = path.join(__dirname, '..', '..', '..', 'public', post.media.filename)
         fs.unlinkSync(mediaPath, (err) => {
             if (err) {
                 next(err)
