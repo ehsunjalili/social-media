@@ -48,7 +48,7 @@ module.exports.getPage = async (req, res, next) => {
 
    
 
-    const allfollowers = followings.map(async follower => {
+    const allfollowers = followers.map(async follower => {
       const followerProfile = await getMediaFromRedis(follower._id);
       const profilePicture = followerProfile.profilePicture;
       return { ...follower.toObject(), profilePicture }
@@ -223,8 +223,8 @@ module.exports.getPage = async (req, res, next) => {
         followed: Boolean(followed),
         pageID,
         hasAccess: false,
-        followers,//: followersList,
-        followings, //: followingsList,
+        followers: followersList,
+        followings: followingsList,
         posts: [],
         page,
         own,
@@ -240,8 +240,8 @@ module.exports.getPage = async (req, res, next) => {
       followed: Boolean(followed),
       pageID,
       hasAccess: true,
-      followers, //: followersList,
-      followings, //: followingsList,
+      followers: followersList,
+      followings: followingsList,
       posts,
       page,
       own,
