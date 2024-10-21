@@ -94,7 +94,7 @@ To set up and run this project on your local machine:
     npm start
     ```
 
-   By default, the app will be accessible at `http://localhost:4005`
+   By default, the app will be accessible at ``
 
 
  > ⚠️ **Note:**  

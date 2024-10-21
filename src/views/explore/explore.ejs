@@ -39,7 +39,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= userInfo._id %>">
-              <img src="http://localhost:4005/<%= userInfo.profilePicture %>" class="object-cover"
+              <img src="/<%= userInfo.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -56,7 +56,7 @@
        <a href="/pages/<%= userInfo._id %>">
       <article class="profile-card shadow px-4">
         <div>
-          <img src="http://localhost:4005/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
+          <img src="/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
         </div>
         <div>
           <p class="user-profile-name text-gray-900 font-Poppins-Bold text-sm">
@@ -230,7 +230,7 @@
                     <a style="width: 40%;" href="/pages/<%= result._id %>">
                       <article class="popular-post">
                         <div class="">
-                          <img src="http://localhost:4005/<%= result.profilePicture %>" class="popular-post_icon" style="border-radius: 100px;" alt="">
+                          <img src="/<%= result.profilePicture %>" class="popular-post_icon" style="border-radius: 100px;" alt="">
                         </div>
                         <div>
                           <p class="text-xs mb-1 text-gray-900 line-clamp-2">
@@ -265,10 +265,10 @@
                       <% let ext = post.media.path.split('.').pop()
                     if(ext != 'mp4'){
                     %>
-                    <img style="height: 100%;" src="http://localhost:4005/<%= post.media.path %>" class="tweetImage object-cover" alt="" />
+                    <img style="height: 100%;" src="/<%= post.media.path %>" class="tweetImage object-cover" alt="" />
                     <% }else{ %>
                       <video  style="width: 100%;height: 100%;background-color: #000000;" >
-                        <source id="instagramVideo" src="http://localhost:4005/<%= post.media.path %>" type="video/mp4">
+                        <source id="instagramVideo" src="/<%= post.media.path %>" type="video/mp4">
                       </video>
                       <% } %>
   
@@ -304,10 +304,10 @@
                     <% let ext = post.media.path.split('.').pop()
                     if(ext != 'mp4'){
                     %>
-                    <img style="height: 100%;" src="http://localhost:4005/<%= post.media.path %>" class="tweetImage object-cover" alt="" />
+                    <img style="height: 100%;" src="/<%= post.media.path %>" class="tweetImage object-cover" alt="" />
                     <% }else{ %>
                       <video  style="width: 100%;height: 100%;background-color: #000000;" >
-                        <source id="instagramVideo" src="http://localhost:4005/<%= post.media.path %>" type="video/mp4">
+                        <source id="instagramVideo" src="/<%= post.media.path %>" type="video/mp4">
                       </video>
                       <% } %>
 

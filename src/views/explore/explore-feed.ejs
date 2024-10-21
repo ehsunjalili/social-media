@@ -25,7 +25,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= userInfo._id %>">
-              <img src="http://localhost:4005/<%= userInfo.profilePicture %>" class="object-cover"
+              <img src="/<%= userInfo.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -42,7 +42,7 @@
       <a href="/pages/<%= userInfo._id %>">
       <article class="profile-card shadow px-4">
         <div>
-          <img src="http://localhost:4005/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
+          <img src="/<%= userInfo.profilePicture %>" class="w-12 h-12 rounded-full" />
         </div>
         <div>
           <p class="user-profile-name text-gray-900 font-Poppins-Bold text-sm">
@@ -214,7 +214,7 @@
                 <div id="<%= post._id %>"></div>
                 <a href="/pages/<%=post.user._id%>" class="flex items-center gap-3">
                   <div>
-                    <img src="http://localhost:4005/<%= post.profilePicture %>" alt="Profile card"
+                    <img src="/<%= post.profilePicture %>" alt="Profile card"
                       class="w-8 rounded-full" style="width: 32px;
                       height: 32px;
                       object-fit: cover;
@@ -241,10 +241,10 @@
                 <% let ext = post.media.path.split('.').pop()
                 if(ext != 'mp4'){
                 %>
-                <img clas src="http://localhost:4005/<%= post.media.path %>" class="tweet-image object-cover" alt="" />
+                <img clas src="/<%= post.media.path %>" class="tweet-image object-cover" alt="" />
                 <% }else{ %>
                   <video  style="width: 100%;border-radius: 12px;" controls>
-                    <source id="instagramVideo" src="http://localhost:4005/<%= post.media.path %>" type="video/mp4">
+                    <source id="instagramVideo" src="/<%= post.media.path %>" type="video/mp4">
                   </video>
                   <% } %>
               </main>
@@ -357,18 +357,18 @@
 
 
                     <% if(post.firstLike){ %>
-                      <img src="http://localhost:4005/<%= post.firstLike.profilePicture %>" class="likedBy" alt="" />
+                      <img src="/<%= post.firstLike.profilePicture %>" class="likedBy" alt="" />
                       <% } %>
 
                         <% if(post.secondLike){ %>
-                          <img src="http://localhost:4005/<%= post.secondLike.profilePicture %>"
+                          <img src="/<%= post.secondLike.profilePicture %>"
                             class="likedBy left-3 z-10" alt="" />
                           <% } %>
 
 
 
                             <% if(post.lastLike){ %>
-                              <img src="http://localhost:4005/<%= post.lastLike.profilePicture %>"
+                              <img src="/<%= post.lastLike.profilePicture %>"
                                 class="likedBy left-6 z-20" alt="" />
                               <% } %>
 
@@ -430,7 +430,7 @@
 
                   <!-- Feed body -->
                   <main class="tweet-body">
-                    <img clas src="http://localhost:4005/images/nopost.png" class="tweet-image object-cover" alt="" />
+                    <img clas src="/images/nopost.png" class="tweet-image object-cover" alt="" />
                   </main>
 
                   <!-- Feed footer -->
@@ -636,9 +636,9 @@
                   <% let ext = post.media.path.split('.').pop()
                   if(ext != 'mp4'){
                   %>
-                  <img src="http://localhost:4005/<%= post.media.path %>" class="popular-post_icon" alt="" />
+                  <img src="/<%= post.media.path %>" class="popular-post_icon" alt="" />
                   <% }else{ %>
-                    <video  class="silent-video" style="width:64px;height: 64px;" src="http://localhost:4005/<%= post.media.path %>"></video>
+                    <video  class="silent-video" style="width:64px;height: 64px;" src="/<%= post.media.path %>"></video>
                     <% } %>
                 </div>
                 <div>
@@ -679,7 +679,7 @@
             <a href="/pages/<%= user._id %>">
               <article class="popular-post">
                 <div class="">
-                  <img src="http://localhost:4005/<%= user.profilePicture %>" class="popular-post_icon"
+                  <img src="/<%= user.profilePicture %>" class="popular-post_icon"
                     style="border-radius: 100px;" alt="" />
                 </div>
                 <div>

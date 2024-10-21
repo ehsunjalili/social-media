@@ -26,7 +26,7 @@
         <div class="w-12 h-12 rounded-full overflow-hidden rounded-full">
           <button id="profileButton" class="w-full h-full bg-transparent border-none">
             <a href="/pages/<%= viewUser._id %>">
-              <img src="http://localhost:4005/<%= viewUser.profilePicture %>" class="object-cover"
+              <img src="/<%= viewUser.profilePicture %>" class="object-cover"
                 alt="profile cover" />
             </a>
           </button>
@@ -43,15 +43,15 @@
       <div id="profile-details-card" class="shadow">
         <!-- Profile Header image -->
         <header class="profile-header">
-          <img src="http://localhost:4005/<%= page.cover %>" class="absolute cover z-0" alt="" />
+          <img src="/<%= page.cover %>" class="absolute cover z-0" alt="" />
 
           <!-- Profile Image -->
           <!-- <span class="profile-pic-card">
-            <img src="http://localhost:4005/<%= page.profilePicture %>" class="profile-pic" alt="" />
+            <img src="/<%= page.profilePicture %>" class="profile-pic" alt="" />
           </span> -->
           <div id="edit-profile-picture" class="w-18 h-18 rounded-full overflow-hidden profile-pic-card"
             style="border: 4px solid white;">
-            <img src="http://localhost:4005/<%= page.profilePicture %>" alt="Profile" class="object-cover">
+            <img src="/<%= page.profilePicture %>" alt="Profile" class="object-cover">
           </div>
         </header>
         <main class="profile-main">
@@ -195,7 +195,7 @@
               <article class="profile-feed-card">
                 <div>
                   <header>
-                    <img src="http://localhost:4005/<%= page.profilePicture %>"
+                    <img src="/<%= page.profilePicture %>"
                       style="width: 60px; height: 60px;object-fit: cover;object-position: center; border-radius: 50%;"
                       alt="profile picture" class="feed-profile-picture" />
                   </header>
@@ -251,10 +251,10 @@
                             <% let ext = post.media.path.split('.').pop()
                             if(ext != 'mp4'){
                             %>
-                            <img clas src="http://localhost:4005/<%= post.media.path %>" class="tweet-image object-cover" alt="" />
+                            <img clas src="/<%= post.media.path %>" class="tweet-image object-cover" alt="" />
                             <% }else{ %>
                               <video  style="width: 100%;border-radius: 12px;" controls>
-                                <source id="instagramVideo" src="http://localhost:4005/<%= post.media.path %>" type="video/mp4">
+                                <source id="instagramVideo" src="/<%= post.media.path %>" type="video/mp4">
                               </video>
                               <% } %>
 
@@ -432,7 +432,7 @@
               <article class="people-follow">
             <div class="flex items-center gap-2">
               <div>
-                <img src="http://localhost:4005/<%= people.profilePicture %>" style="width: 60px; 
+                <img src="/<%= people.profilePicture %>" style="width: 60px; 
                 height: 60px; 
                 object-fit: cover; 
                 border-radius: 50%; " class="w-15 rounded-full" alt="" />
@@ -509,7 +509,7 @@
             if(ext != 'mp4'){ %>
           <article class="wh-card">
             <a href="/explore/<%= post._id %>">
-            <img src="http://localhost:4005/<%= post.media.path %>" alt="" />
+            <img src="/<%= post.media.path %>" alt="" />
           </a>
           </article>
            <% } %>
@@ -549,7 +549,7 @@
                   <a href="/pages/<%= follower._id %>">
                     <div class="flex items-center gap-2">
                       <div class="w-12 h-12 rounded-full overflow-hidden">
-                        <img src="http://localhost:4005/<%= follower.profilePicture %>"
+                        <img src="/<%= follower.profilePicture %>"
                           class="w-full object-cover h-full" />
                       </div>
                       <div>
@@ -608,7 +608,7 @@
                   <a href="/pages/<%= following._id %>">
                     <div class="flex items-center gap-2">
                       <div class="w-12 h-12 rounded-full overflow-hidden">
-                        <img src="http://localhost:4005/<%= following.profilePicture %>"
+                        <img src="/<%= following.profilePicture %>"
                           class="w-full object-cover h-full">
                       </div>
                       <div>
