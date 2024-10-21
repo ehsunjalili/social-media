@@ -26,7 +26,7 @@ module.exports.showHomeView = async (req, res) => {
     }
 
     const newRequests = requests.map(async request => {
-        const requestProfile = await (await getMediaFromRedis(request._id));
+        const requestProfile = await (await getMediaFromRedis(request.follower._id));
         const profilePicture = requestProfile.profilePicture;
         return { ...request.toObject(), profilePicture }
     })
