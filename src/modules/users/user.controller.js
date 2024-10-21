@@ -70,9 +70,9 @@ module.exports.updateProfile = async (req, res, next) => {
 
     const currentUser = await userModel.findOne({ _id: userID })
 
-    const profilePath = req.files.profile ? `/${req.files.profile[0].filename}` : `${currentUser.profilePicture}`;
+    const profilePath = req.files.profile ? `${req.files.profile[0].filename}` : `${currentUser.profilePicture}`;
 
-    const coverPath = req.files.cover ? `/${req.files.cover[0].filename}` : `${currentUser.cover}`;
+    const coverPath = req.files.cover ? `${req.files.cover[0].filename}` : `${currentUser.cover}`;
 
 
   

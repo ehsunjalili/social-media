@@ -34,7 +34,7 @@ module.exports.createPost = async (req, res, next) => {
         await createPostValidationSchema.validate({ description }, { abortEarly: false, })
         const post = await postModel({
             media: {
-                path: `/images/posts/${req.file.filename}`,
+                path: `${req.file.filename}`,
                 filename: req.file.filename,
             },
             description,
