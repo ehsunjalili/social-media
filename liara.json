@@ -2,12 +2,8 @@
     "port": 3000,
     "disks": [
         {
-            "name":"profile-data",
-            "mountTo":"public/images/profiles"
-        },
-        {
-            "name":"post-data",
-            "mountTo":"public/images/posts"
+            "name":"data",
+            "mountTo":"public"
         }
     ]
 }

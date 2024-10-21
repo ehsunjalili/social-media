@@ -5,7 +5,7 @@ const verify = require('../../middlewares/accountVerify')
 const controller = require('./post.controller')
 const { multerStorage } = require('../../middlewares/uploaderConfigs')
 
-const upload = multerStorage('public/images/posts', /jpeg|jpg|png|webp|mp4|mkv/ )
+const upload = multerStorage('public/', /jpeg|jpg|png|webp|mp4|mkv/ )
 
 router.route('/')
     .get(auth, verify, controller.showPostUploadView)
