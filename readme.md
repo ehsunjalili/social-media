@@ -11,6 +11,7 @@ A social network project similar to Instagram, built using **Express.js**. This 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://social-network.liara.run/)
 
 
+
 ## 📸 Screenshots
 
 Here are some screenshots showcasing the main features of the application:
