@@ -4,7 +4,12 @@
 ![Last update](https://img.shields.io/github/last-commit/ehsunjalili/social-media?label=Last%20update&color=blue)   &nbsp;  ![](https://img.shields.io/badge/npm%20package-10.2.3-red)   &nbsp; [![Node.js](https://img.shields.io/badge/license-MIT-238636)](https://github.com/ehsunjalili/social-media)
 
 
-A full-featured social network project similar to Instagram, built using **Express.js**. This project includes features like user authentication, image uploads, posts, comments, and more, giving you a hands-on experience of creating a scalable social media platform.
+A social network project similar to Instagram, built using **Express.js**. This project includes features like user authentication, image uploads, posts, comments, and more, giving you a hands-on experience of creating a scalable social media platform.
+
+## 🌐 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://social-network.liara.run/)
+
 
 
 ## 📸 Screenshots
@@ -41,7 +46,7 @@ Here are some screenshots showcasing the main features of the application:
 - Admin can **delete any account** if necessary
 - Ability to **save posts**
 - **OTP-based authentication system** for enhanced security
-
+- **Account recovery**: Option to recover account if password is forgotten (via username or email)
 
 
 
